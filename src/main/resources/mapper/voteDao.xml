@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.vote.Dao.VoteDao">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+<!--    <resultMap type="com.atguigu.gulimall.product.entity.AttrEntity" id="attrMap">-->
+<!--        <result property="attrId" column="attr_id"/>-->
+<!--        <result property="attrName" column="attr_name"/>-->
+<!--        <result property="searchType" column="search_type"/>-->
+<!--        <result property="valueType" column="value_type"/>-->
+<!--        <result property="icon" column="icon"/>-->
+<!--        <result property="valueSelect" column="value_select"/>-->
+<!--        <result property="attrType" column="attr_type"/>-->
+<!--        <result property="enable" column="enable"/>-->
+<!--        <result property="catelogId" column="catelog_id"/>-->
+<!--        <result property="showDesc" column="show_desc"/>-->
+<!--    </resultMap>-->
+
+<!--    <select id="addSingleVote" resultType="java.lang.Long">-->
+<!--    <select id="addSingleVote">-->
+<!--        SELECT  attr_id from pms_attr where attr_id in-->
+<!--        <foreach collection="attrIds" item="id" separator="," open="(" close=")">-->
+<!--            #{id}-->
+<!--        </foreach>-->
+<!--        and search_type=1-->
+<!--    </select>-->
+    <update id="addSingleVote">
+        UPDATE `video` SET num=num+1 WHERE video_id=#{video}
+    </update>
+
+    <select id="queryExistenceById" resultType="int">
+        select count(1) from video where video_id=#{video}
+    </select>
+
+    <insert id="insertById" parameterType="String">
+        insert into video values(#{video},1)
+    </insert>
+<!--    public void insertByIdinsertById(String video);-->
+
+    <select id="selectAll" resultType="com.example.vote.entity.Video">
+        select * from video
+    </select>
+</mapper>
