@@ -2,6 +2,7 @@ package com.example.vote.Controller;
 
 
 import com.example.vote.Service.VoteService;
+import com.example.vote.Utils.Util;
 import com.example.vote.entity.Video;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,7 +31,9 @@ public class VoteController {
         List<Integer> voted=new ArrayList<>(0);
         voted.add(1);
         voted.add(2);
-        voteService.addSingleVote(voted);
+        if(voteService.addSingleVote(voted)){
+            Util.triggerAop();
+        }
 //        List<Video> data = voteService.selectAll();
 //        String ret="-------------------------\n";
 //        for (Video item : data) {
