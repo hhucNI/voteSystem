@@ -3,11 +3,13 @@ package com.example.vote.Controller;
 
 import com.example.vote.Service.VoteService;
 import com.example.vote.Utils.AopTrigger;
+import com.example.vote.Utils.IpUtil;
 import com.example.vote.Utils.Util;
 import com.example.vote.entity.Video;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -26,8 +28,6 @@ public class VoteController {
     @Autowired
     private VoteService voteService;
 
-    @Autowired
-    private AopTrigger aopTrigger;
     @RequestMapping("/queryAll")
 //    public String addSingleVote(@RequestParam List<String> params) {
     public List<Video> queryAll() {
@@ -35,17 +35,17 @@ public class VoteController {
     }
 
     @RequestMapping("/singleVote")
-//    public String addSingleVote(@RequestParam List<String> params) {
-    public String addSingleVote() {
+    public String addSingleVote(@RequestParam List<Integer> voted) {
+//    public String addSingleVote() {
         ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = servletRequestAttributes.getRequest();
-        HttpServletResponse response = servletRequestAttributes.getResponse();
-        String remoteAddr = Util.getIpAddress(request);
+//        HttpServletResponse response = servletRequestAttributes.getResponse();
+        String remoteAddr = IpUtil.getIpAddr(request);
         log.error("iip  :     {}     urI  :  {}   ,URL   ;{}",remoteAddr,request.getRequestURI(),request.getRequestURL().toString());
         if(!voteService.existIP(remoteAddr)){
-            List<Integer> voted=new ArrayList<>(0);
-            voted.add(1);
-            voted.add(2);
+//            List<Integer> voted=new ArrayList<>(0);
+//            voted.add(1);
+//            voted.add(2);
             try{
                 voteService.addSingleVote(voted);
                 //投票成功后，加入ip
@@ -60,12 +60,7 @@ public class VoteController {
         }
 
         return "您今天已经投过票，请勿重新投票";
-//        List<Video> data = voteService.selectAll();
-//        String ret="-------------------------\n";
-//        for (Video item : data) {
-//            ret+=item.toString();
-//        }
-//        return ret;
+
     }
 
 

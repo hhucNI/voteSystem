@@ -1,6 +1,9 @@
 spring:
   datasource:
-    username: root
-    password: NBY2000NBY
-    url: jdbc:mysql://127.0.0.1:3306/testbase?useUnicode=true&characterEncoding=UTF-8&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai
+    username: ecnu
+    password: 662282815294ea095031294fe5957656
+    url: jdbc:mysql://rm-uf6tav133he29he0x3o.mysql.rds.aliyuncs.com:3306/ecnueducation?useUnicode=true&characterEncoding=UTF-8&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.cj.jdbc.Driver
+
+#server:
+#  port: 80
