@@ -7,8 +7,13 @@ import java.util.List;
 
 @Service
 public interface VoteService {
-    public Boolean addSingleVote(List<Integer> params);
+    public void addSingleVote(List<Integer> params);
 
     public List<Video> selectAll();
+    public void t();
+
+    public boolean existIP(String ip);
+
+    public boolean insertIP(String ip);
 
 }

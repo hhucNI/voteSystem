@@ -4,27 +4,44 @@ import com.example.vote.Dao.VoteDao;
 import com.example.vote.entity.Video;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
-public class VoteServiceImpl implements VoteService{
+public class VoteServiceImpl implements VoteService {
 
 
     @Autowired
     private VoteDao voteDao;
-    public Boolean addSingleVote(List<Integer> params){
-        for (int id : params) {
-//            if(voteDao.queryExistenceById(s)==0){
-//                voteDao.insertById(s);
-//            }else{
-                voteDao.addSingleVote(id);
-        }
-        return true;
+
+    public boolean existIP(String ip) {
+        return voteDao.queryIP(ip) == 1;
     }
 
-    public List<Video> selectAll(){
+    public boolean insertIP(String ip) {
+        try {
+            voteDao.insertIP(ip);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    public void addSingleVote(List<Integer> params) {
+        for (int id : params) {
+//            if(id==2) throw new RuntimeException();
+            voteDao.addSingleVote(id);
+        }
+    }
+
+    public List<Video> selectAll() {
         return voteDao.selectAll();
+    }
+
+    public void t() {
+
     }
 
 

@@ -15,4 +15,8 @@ public interface VoteDao {
     public void insertById(String video);
 
     public List<Video> selectAll();
+
+    public int queryIP(String ip);
+
+    public void insertIP(String ip);
 }

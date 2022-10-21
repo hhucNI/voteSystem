@@ -41,4 +41,12 @@
     <select id="selectAll" resultType="com.example.vote.entity.Video">
         select * from video
     </select>
+
+    <select id="queryIP" resultType="int" parameterType="String">
+        select count(*) from visited_ip where ip=#{ip}
+    </select>
+
+    <insert id="insertIP" parameterType="String">
+        insert into visited_ip values(#{ip})
+    </insert>
 </mapper>
