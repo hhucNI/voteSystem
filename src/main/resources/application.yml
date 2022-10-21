@@ -5,5 +5,5 @@ spring:
     url: jdbc:mysql://rm-uf6tav133he29he0x3o.mysql.rds.aliyuncs.com:3306/ecnueducation?useUnicode=true&characterEncoding=UTF-8&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.cj.jdbc.Driver
 
-#server:
-#  port: 80
+server:
+  port: 8888
