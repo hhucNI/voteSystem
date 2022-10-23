@@ -26,6 +26,8 @@ public class VoteController {
     @Autowired
     private VoteService voteService;
 
+
+
     @RequestMapping("/queryAll")
 //    public String addSingleVote(@RequestParam List<String> params) {
     public List<Video> queryAll() {
@@ -39,22 +41,22 @@ public class VoteController {
 //        HttpServletResponse response = servletRequestAttributes.getResponse();
         String remoteAddr = IpUtil.getIpAddr(request);
 //        log.error("iip  :     {}     urI  :  {}   ,URL   ;{}",remoteAddr,request.getRequestURI(),request.getRequestURL().toString());
-        if(!voteService.existIP(remoteAddr)){
+        if (!voteService.existIP(remoteAddr)) {
 //            List<Integer> voted=new ArrayList<>(0);
 //            voted.add(1);
 //            voted.add(2);
-            if(voted.size()>=5 && voted.size()<=15){
-                try{
+            if (voted.size() >= 5 && voted.size() <= 15) {
+                try {
                     voteService.addSingleVote(voted);
                     //投票成功后，加入ip
                     voteService.insertIP(remoteAddr);
                     return "ok";
-                }catch (Exception e){
+                } catch (Exception e) {
                     //投票未成功，不加入ip，可重新投
                     return "投票失败，清重新投票";
 
                 }
-            }else {
+            } else {
                 return "投票数量太少，需要在5-15个之间";
             }
 
@@ -64,7 +66,6 @@ public class VoteController {
         return "您今天已经投过票，请勿重新投票";
 
     }
-
 
 
 }

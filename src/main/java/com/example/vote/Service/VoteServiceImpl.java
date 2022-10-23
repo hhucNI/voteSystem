@@ -15,6 +15,9 @@ public class VoteServiceImpl implements VoteService {
     @Autowired
     private VoteDao voteDao;
 
+    private List<Video> cache = null;
+
+
     public boolean existIP(String ip) {
         return voteDao.queryIP(ip) == 1;
     }
@@ -37,7 +40,17 @@ public class VoteServiceImpl implements VoteService {
     }
 
     public List<Video> selectAll() {
-        return voteDao.selectAll();
+        Object lock=new Object();
+        if(cache==null){
+            synchronized (lock){
+                if(cache==null){
+                    cache=voteDao.selectAll();
+                }
+                return cache;
+            }
+        }
+        return cache;
+
     }
 
     public void t() {

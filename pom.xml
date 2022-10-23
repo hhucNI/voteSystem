@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.example</groupId>
     <artifactId>vote</artifactId>
-    <version>7.0.0</version>
+    <version>cache-8888</version>
     <name>vote</name>
     <description>vote</description>
     <properties>

@@ -49,4 +49,6 @@
     <insert id="insertIP" parameterType="String">
         insert into visited_ip values(#{ip})
     </insert>
+
+
 </mapper>
