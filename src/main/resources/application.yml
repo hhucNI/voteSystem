@@ -6,4 +6,5 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
 
 server:
-  port: 8888
+  port: 9999
+  max-http-header-size: 16KB
